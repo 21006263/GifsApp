@@ -1,1 +1,24 @@
-<p>resultados works!</p>
+<!-- <ul>
+    <li *ngFor=" let git of resultados">
+        {{git.title}}
+    </li>
+</ul> -->
+<div class="row">
+    <div *ngFor=" let git of resultados"
+    class="col-md-4 col-sm-6">
+
+        <div class="card">
+            <img 
+            [src]=" git.images.downsized_medium.url" 
+            [alt]="git.title"
+            class="card-img-top"
+            >
+           <div class="card-body">
+            <p class="card-text"></p>
+            {{git.title}} 
+            
+            
+           </div>
+        </div>
+    </div>
+</div>
