@@ -20,7 +20,11 @@ get historial() {
 }
 
 
-constructor (private http: HttpClient) {}
+constructor (private http: HttpClient) {
+  
+  this._historial = JSON.parse(localStorage.getItem('historial')!) || [];
+  this.resultados = JSON.parse(sessionStorage.getItem('resultados')!) || [];
+}
 
 
 buscarGifs(query: string = '') {
@@ -30,6 +34,8 @@ buscarGifs(query: string = '') {
     this._historial.unshift(query);
     this._historial = this._historial.splice(0,10);
 
+    localStorage.setItem('historial', JSON.stringify(this._historial))
+    
   }
 
 
@@ -38,6 +44,7 @@ buscarGifs(query: string = '') {
     console.log(ponse.data)
     this.resultados = ponse.data;
     //Response.data[0].images.downsized_medium.url
+    sessionStorage.setItem('resultados', JSON.stringify(this.resultados))
   })
 
 }
